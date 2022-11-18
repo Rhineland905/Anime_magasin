@@ -23,3 +23,13 @@ class Article(models.Model):
     class Meta:
         verbose_name = 'Статья'
         verbose_name_plural = 'Статья'
+
+
+class Teg(models.Model):
+    article_table = models.ManyToManyField(Article)
+    teg = models.CharField(verbose_name='Тег',max_length=255)
+    def __str__(self):
+        return self.teg
+    class Meta:
+        verbose_name = 'Тег'
+        verbose_name_plural = 'Тег'
