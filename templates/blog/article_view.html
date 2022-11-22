@@ -1,0 +1,13 @@
+<h2>{{ article.title }}</h2>
+
+<p>{{ article.text }}</p>
+<p>
+    {% for tag in article.tegs.all %}
+        <a href="">#{{ tag.name }}</a>&nbsp;
+    {% endfor %}
+
+</p>
+<p style="text-align: right">
+    Дата: <b>{{ article.publish_date }}</b>
+    Категория: <b>{{ category.name }}</b>
+</p>

@@ -1,6 +1,6 @@
 <h2>Категории</h2>
 {% for category in categories %}
     <p>
-    {{ category.name }}
+        <a href="{% url 'blog_article_list' category_id=category.id %}">{{ category.name }}</a>
     </p>
 {% endfor %}

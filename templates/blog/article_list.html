@@ -1,0 +1,8 @@
+<h2>{{ category.name }}</h2>
+
+{% for article in articles %}
+<h4><a href="{% url 'blog_article_viwe' category_id=category.id article_id=article.id %}">{{ article.title }}</a></h4>
+    <p>{{ article.text_preview }}</p>
+{% endfor %}
+
+
