@@ -1,0 +1,11 @@
+<h2>{{ category.name }}</h2>
+
+{% for articles in article %}
+    <h4><a href="">{{ articles.title }}</a></h4>
+    <p>{{ articles.text_preview }}</p>
+    <hr>
+
+{% endfor %}
+
+
+
