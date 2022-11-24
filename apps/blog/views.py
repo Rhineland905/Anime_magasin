@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from apps.blog.models import BlogCategory, Article
+from apps.blog.models import BlogCategory, Article,Teg
 
 
 # Create your views here.
@@ -18,3 +18,7 @@ def article_viwe(request, category_id, article_id):
     category = BlogCategory.objects.get(id=category_id)
     article = Article.objects.get(id=article_id)
     return render(request, 'blog/article_view.html', {'article': article, "category": category})
+
+def teg_shear(request, teg_id):
+    article = Article.objects.get()
+    return  render(request,'blog/teg_view',{'article':article})
