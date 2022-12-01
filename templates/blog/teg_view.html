@@ -1,0 +1,8 @@
+<h2>{{ teg_id }}</h2>
+
+{% for articles in article %}
+    <h4>{{ articles }}</h4>
+    <p>{{ articles.text_preview }}</p>
+    <hr>
+
+{% endfor %}
