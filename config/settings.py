@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Anime_shop_db',
+        'NAME': 'Anime_shop_db_2',
         'USER': 'Anime_shop',
         'PASSWORD': '8012',
         'HOST': 'localhost',
