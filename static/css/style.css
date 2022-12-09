@@ -1,0 +1,16 @@
+#logo{
+    max-width: 400px;
+    width: 100%;
+}
+.main-menu{
+    margin-top: 15px;
+    margin-bottom: 30px;
+}
+.header-text{
+    color: #2c519e;
+    font-size: 23px;
+    text-align: right;
+    font-weight: bold;
+    height: 140px;
+    line-height: 140px;
+}
