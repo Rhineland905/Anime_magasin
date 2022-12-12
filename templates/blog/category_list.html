@@ -1,12 +1,16 @@
-<h2>Категории</h2>
-{% for category in categories %}
-    <p>
-        <a href="{% url 'blog_article_list' category_id=category.id %}">{{ category.name }}</a>
-    </p>
-{% endfor %}
-<p>
-    {% for tag in article.tags.all %}
-        <a href="teg_view">#{{ tag.name }}</a>&nbsp;
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Категории</h2>
+    {% for category in categories %}
+        <p>
+            <a href="{% url 'blog_article_list' category_id=category.id %}">{{ category.name }}</a>
+        </p>
     {% endfor %}
+    <p>
+        {% for tag in article.tags.all %}
+            <a href="teg_view">#{{ tag.name }}</a>&nbsp;
+        {% endfor %}
 
-</p>
+    </p>
+{% endblock %}
+
