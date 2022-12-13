@@ -11,12 +11,6 @@
 </head>
 <body>
 <div class="container">
-    <div class="row main-header">
-        <div class="col-6">
-            <img src="{% static 'img/logo.png' %}" alt="" id = "logo">
-        </div>
-        <div class="col-6"><p class="header-text">1227</p></div>
-    </div>
     <div class="row main-menu">
         <nav class="navbar navbar-expand-lg bg-light">
             <div class="container-fluid">
@@ -28,12 +22,17 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
+                            <div class="col-2">
+                                <img src="{% static 'img/Logo.png' %}" alt="" id="logo">
+                            </div>
+                        </li>
+                        <li class="nav-item">
+
                             <a class="nav-link active" href="/">Главная</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url "blog_category_list" %}">Блог</a>
                         </li>
-
 
                     </ul>
                 </div>
@@ -41,10 +40,16 @@
         </nav>
     </div>
 </div>
-<div class="content">
+
+
+<div class="container">
     {% block content %}
     {% endblock %}
+    <div class="row header-text">
+        <div class="col-12"><p class="header-text">Всегда продаём толька качественый товар</p></div>
+        <div class="col-12"><p class="header-text">Номер - +380665712766</p></div>
+        <div class="col-12"><p class="header-text">Работаем только по выходным</p></div>
+    </div>
 </div>
-
 </body>
 </html>

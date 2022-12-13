@@ -1,11 +1,19 @@
-<h2>{{ category.name }}</h2>
+{% extends 'base.html' %}
+{% block content %}
+    <h2>{{ category.name }}</h2>
 
-{% for articles in article %}
-    <h4><a href="{% url "blog_article_viwe" category_id=category.id article_id=articles.id%}">{{ articles.title }}</a></h4>
-    <p>{{ articles.text_preview }}</p>
-    <hr>
+    {% for articles in article %}
+        <h4>
+            <a href="{% url "blog_article_viwe" category_id=category.id article_id=articles.id %}">{{ articles.title }}</a>
+        </h4>
+        <p>{{ articles.text_preview }}</p>
+        <hr>
 
-{% endfor %}
+    {% endfor %}
+
+{% endblock %}
+
+
 
 
 
