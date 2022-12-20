@@ -6,7 +6,7 @@
         {% for category in categories %}
             <div class="col-4 blog-item">
                 {% if category.image %}
-                    <a href="{% url 'blog_article_list' category_id=category.id %}"><img class="img-thumbnail" src="{{ category.image_thumbnail.url }}" alt=""></a>
+                    <a href="{% url 'blog_article_list' category_id=category.id %}"><img class="img-thumbnail" src="{{ category.image.url }}" alt=""></a>
                 {% else %}
                     <a href="{% url 'blog_article_list' category_id=category.id %}"><img class="img-thumbnail" src="{% static 'img/no-image.png' %}" alt=""></a>
                 {% endif %}
