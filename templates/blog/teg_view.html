@@ -1,8 +1,7 @@
-<h2>{{ teg_id }}</h2>
+<h2>{{ tag.name }}</h2>
 
-{% for articles in article %}
-    <h4>{{ articles }}</h4>
-    <p>{{ articles.text_preview }}</p>
-    <hr>
-
+{% for article in articles %}
+    <h4><a href="{% url 'blog_article_viwe' category_id=article.category_id article_id=article.id %}">{{ article.title }}</a></h4>
+    <p>{{ article.text_preview }}</p>
+    <br>
 {% endfor %}

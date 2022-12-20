@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h2>{{ article.title }}</h2>
-    <img class = "image_thumbnail"src="{{ article.image.url }}" alt="">
-    <p>{{ article.text }}</p>
+<h2>{{ article.title }}</h2>
+    <img class="img-thumbnail" src="{{ article.image.url }}" alt="">
 
-    <p>
+    <p>{{ article.text }}</p>
+     <p>
         {% for tag in article.tags.all %}
-            <a href="{% url "teg_view" teg_id=tag.id %}">#{{ tag.name }}</a>&nbsp;
+            <a href="{% url 'tag_search' tag_id=tag.id %}">#{{ tag.name }}</a>&nbsp;
         {% endfor %}
 
     </p>
