@@ -6,9 +6,9 @@
         {% for article in articles %}
             <div class="col-4 blog-item">
                 {% if articles.image %}
-                    <img class="img-thumbnail" src="{{ articles.image.url }}" alt="">
+                    <a href="{% url 'blog_article_viwe' article_id=article.id category_id=article.category.id %}"><img class="img-thumbnail" src="{{ articles.image.url }}" alt=""></a>
                 {% else %}
-                    <img class="img-thumbnail" src="{% static 'img/no-image.png' %}" alt="">
+                    <a href="{% url 'blog_article_viwe' article_id=article.id category_id=article.category.id %}"><img class="img-thumbnail" src="{% static 'img/no-image.png' %}" alt=""></a>
                 {% endif %}
                 <h4>
                     <a href="{% url 'blog_article_viwe' article_id=article.id category_id=article.category.id %}">{{ article.title }}</a>
