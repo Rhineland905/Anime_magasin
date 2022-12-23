@@ -6,10 +6,13 @@ from django.utils.html import format_html
 from django.utils.http import urlencode
 
 
+
+
 @admin.register(Tag)
 class TagsAdmin(admin.ModelAdmin):
     list_display = ['id', 'name']
     list_display_links = ['id', 'name']
+
 
 
 @admin.register(BlogCategory)
@@ -40,8 +43,12 @@ class ArticleAdmin(admin.ModelAdmin):
     category_link.short_description = 'Категории:'
 
     def tags_count(self, instance):
-        tags = Article.tags.all()
-        url = reverse('admin:blog_tag_change', args=[instance.id])
-        return format_html(f'<a href = "{url}">{tags}</a>')
+        tags = instance.tags.all()
+        data = []
+        for tag in tags:
+            url = reverse('admin:blog_tag_change', args=[tag.id])
+            data.append(f'<a href = "{url}">{tag.name}</a>')
+        data_str = ', '.join(data)
+        return format_html(data_str)
 
     tags_count.short_description = 'Теги: '
