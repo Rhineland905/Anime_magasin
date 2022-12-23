@@ -6,7 +6,13 @@ from django.utils.html import format_html
 from django.utils.http import urlencode
 
 
-admin.site.register(Tag)
+
+
+@admin.register(Tag)
+class TagsAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name']
+    list_display_links = ['id', 'name']
+
 
 
 @admin.register(BlogCategory)
@@ -46,4 +52,3 @@ class ArticleAdmin(admin.ModelAdmin):
         return format_html(data_str)
 
     tags_count.short_description = 'Теги: '
-# Register your models here.
