@@ -4,6 +4,7 @@ from pilkit.processors import ResizeToFill
 from django.utils.safestring import mark_safe
 from config.settings import MEDIA_ROOT
 
+
 class BlogCategory(models.Model):
     name = models.CharField(verbose_name='Имя категории', max_length=255)
     # image = models.ImageField(verbose_name='Изображение', upload_to='blog/category/',null=True)
@@ -15,20 +16,23 @@ class BlogCategory(models.Model):
         blank=True
     )
 
-
     def __str__(self):
         return self.name
 
     class Meta:
         verbose_name = 'Категория блога'
         verbose_name_plural = 'Категории блога'
+
     def image_tag_thumbnail(self):
         if self.image:
             return mark_safe(f"<img src='/{MEDIA_ROOT}{self.image}' width='70'>")
+
     image_tag_thumbnail.short_description = 'Изображение'
+
     def image_tag(self):
         if self.image:
             return mark_safe(f"<img src='/{MEDIA_ROOT}{self.image}>")
+
     image_tag_thumbnail.short_description = 'Изображение'
 
 
@@ -69,4 +73,3 @@ class Article(models.Model):
     class Meta:
         verbose_name = 'Статья'
         verbose_name_plural = 'Статьи'
-
