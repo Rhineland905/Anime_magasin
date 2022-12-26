@@ -7,14 +7,26 @@
     font-size: 24px;
     text-align: right;
     font-weight: bold;
-    height: 10px;
-    line-height: 10px;
+    height: 11px;
+    line-height: 20px;
 }
 .main-menu{
     margin-top: 0px;
     margin-bottom: 20px;
 }
 
+.f_l_name{
+    height: 35px;
+    line-height: 10px;
+    text-align: right;
+    font-weight: bold;
+}
+.avatar{
+    font-size: 24px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 45px;
+}
 
 .blog-item{
     margin-bottom: 30px;
