@@ -2,12 +2,13 @@ from django.db import models
 from imagekit.models import ProcessedImageField, ImageSpecField
 from pilkit.processors import ResizeToFill
 from django.utils.safestring import mark_safe
+
+from apps.user.models import User
 from config.settings import MEDIA_ROOT
 
 
 class BlogCategory(models.Model):
     name = models.CharField(verbose_name='Имя категории', max_length=255)
-    # image = models.ImageField(verbose_name='Изображение', upload_to='blog/category/',null=True)
     image = ProcessedImageField(
         verbose_name='Изображение',
         upload_to='blog/category/',
@@ -51,6 +52,7 @@ class Article(models.Model):
     category = models.ForeignKey(to=BlogCategory, verbose_name='Категория', on_delete=models.CASCADE)
     title = models.CharField(verbose_name='Заголовок', max_length=255)
     text_preview = models.TextField(verbose_name='Текст-превью', null=True, blank=True)
+    user = models.ForeignKey(to=User, verbose_name='Пользователь', on_delete=models.CASCADE, null=True)
     text = models.TextField(verbose_name='Текст')
     publish_date = models.DateTimeField(verbose_name='Дата публикации')
     tags = models.ManyToManyField(to=Tag, verbose_name='Теги', blank=True)
