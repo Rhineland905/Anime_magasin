@@ -6,13 +6,10 @@ from django.utils.html import format_html
 from django.utils.http import urlencode
 
 
-
-
 @admin.register(Tag)
 class TagsAdmin(admin.ModelAdmin):
     list_display = ['id', 'name']
     list_display_links = ['id', 'name']
-
 
 
 @admin.register(BlogCategory)
