@@ -16,21 +16,8 @@
                 <p>{{ article.text_preview }}</p>
                 <hr>
                 <p class="text-end"><i>Дата создания - {{ article.created_at }}</i></p>
-                {% if article.user %}
-                <div class="f_l_name">
-                    {% if article.user.image %}
-                    <img class="avatar" src="{{ article.user.image_thumbnail.url }}" alt="">
 
 
-                    {% endif %}
-                    {% if article.user.first_name or article.user.last_name %}
-                        <span class="f_l_name">Автор - {{ article.user.first_name }} {{ article.user.last_name }}</span>
-                    {% else %}
-                        <span class="f_l_name">Автор - {{ article.user.username }}</span>
-
-                    {% endif %}
-                {% endif %}
-            </div>
         {% endfor %}
     </div>
 {% endblock %}
