@@ -54,3 +54,25 @@ class Category(MPTTModel):
 class Meta:
     verbose_name = 'Категория'
     verbose_name_plural = 'Категории'
+
+class Product(MPTTModel):
+    name = models.CharField(verbose_name='Название', max_length=255)
+    slug = models.SlugField(unique=True, verbose_name='Слаг (ЧПУ)')
+    description = models.TextField(verbose_name='Описание',null=True,blank=True)
+    quantity = models.IntegerField(verbose_name='Количество')
+    price = models.DecimalField(verbose_name='Цена', max_digits=12, decimal_places=2, default=0)
+    parent = TreeForeignKey(
+        to='self',
+        verbose_name='Родиьель',
+        related_name='child',
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+
+    )
+    created_at = models.DateTimeField(verbose_name='Дата создания')
+    updated_at = models.DateTimeField(verbose_name='Дата обновления')
+
+    class Meta:
+        verbose_name = 'Продукт'
+        verbose_name_plural = 'Продукт'
