@@ -22,7 +22,8 @@ from config import settings
 urlpatterns = [
     path('',index,name='index'),
     path('admin/', admin.site.urls),
-    path('blog/',include('apps.blog.urls'))
+    path('blog/',include('apps.blog.urls')),
+    path('catalog/',include('apps.catalog.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
