@@ -1,0 +1,8 @@
+<title>{{ meta_title }}</title>
+    {% if product.meta_description %}
+         <meta name="description" content="{{ product.meta_description }}">
+    {% endif %}
+
+    {% if meta_keywords %}
+         <meta name="keywords" content="{{ product.meta_keywords }}">
+    {% endif %}
