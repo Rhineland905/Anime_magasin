@@ -6,36 +6,45 @@
 
             <div class="col-xs-12 col-md-6">
                 <div class="row">
-                    <div class="col-6">
-                        {% for image in product.images %}
-                            <a href="{{ image.image.url }}"  class="product-image" data-lightbox="roadtrip">
-                                <img src="{{ MEDIA_URL }}{{ image.image_thumbnail.url }}"  alt="" class="img-thumbnail">
+                    {% for image in product.images %}
+                        <div class="col-6">
+                            <a href="{{ image.image.url }}" class="product-image" data-lightbox="roadtrip">
+                                <img src="{{ image.image_thumbnail.url }}" alt="" class="img-thumbnail">
                             </a>
-                        {% endfor %}
-                    </div>
+                        </div>
+                    {% endfor %}
+
                 </div>
             </div>
+
             <div class="col-xs-12 col-md-6">
                 <p>Наличие:
-                    {% if object.quantity %}
-                       <b class="text-success">В наличии</b></p>
+                    {% if product.quantity > 5 %}
+                        <b class="text-success">В наличии</b>
+                    {% elif product.quantity < 5 and product.quantity > 0 %}
+                        <b class="text-warning">Заканчивается</b>
                     {% else %}
-                        <b class="text-success">Нету</b></p>
+                        <b class="text-danger">Нет в наличии</b>
                     {% endif %}
+                </p>
 
-                <b class="text-danger product-price">{{ product.price }}грн</b>
+                <b class="text-danger product-price">{{ product.price }} грн.</b>
+
                 <form action="">
                     <div class="input-group mb-3">
                         <input type="number" min="1" step="1" max="100" value="1" class="form-control">
                         <button class="btn btn-success" type="button" id="button-addon1">Купить</button>
                     </div>
                 </form>
-                <br>
-                <h4 class="text-center">Описание</h4>
-                <p>{{ product.description }}</p>
-            </div>
 
+                {% if product.description %}
+                    <br>
+                    <h4 class="text-center">Описание</h4>
+                    <p>{{ product.description }}</p>
+                {% endif %}
+            </div>
         </div>
+
         <script>
             lightbox.option({
                 'resizeDuration': 200,
