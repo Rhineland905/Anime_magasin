@@ -1,61 +1,68 @@
-#logo{
+#logo {
     max-width: 250px;
     width: 100%;
 }
-.header-text{
-    color: rgba(0,0,0,0.2);
+
+.header-text {
+    color: rgba(0, 0, 0, 0.2);
     font-size: 24px;
     text-align: right;
     font-weight: bold;
     height: 11px;
     line-height: 20px;
 }
-.main-menu{
+
+.main-menu {
     margin-top: 0px;
     margin-bottom: 20px;
 }
 
-.f_l_name{
+.f_l_name {
     height: 35px;
     line-height: 10px;
     text-align: right;
     font-weight: bold;
     margin-bottom: 30px;
 }
-.avatar{
+
+.avatar {
     font-size: 20px;
     height: 40px;
     line-height: 50px;
     border-radius: 45px;
 }
 
-.blog-item{
+.blog-item {
     margin-bottom: 30px;
 }
-.blog-item h4{
+
+.blog-item h4 {
     text-align: center;
 }
-.blog-item h4 a{
+
+.blog-item h4 a {
     text-decoration: none;
 }
-.blog-item img, .blog-item h4 a{
+
+.blog-item img, .blog-item h4 a {
     transition: all .15s linear;
 }
-.blog-item:hover img{
+
+.blog-item:hover img {
     transform: scale(1.03, 1.03);
 }
-.blog-item:hover h4 a{
+
+.blog-item:hover h4 a {
     top: 3px;
     color: darkred;
 }
 
 
-
-.my-header{
+.my-header {
     padding: 15px 0;
 }
 
-.product{
+.product {
     box-shadow: 0 0 4px #ccc;
     transition: all .15s linear;
 }

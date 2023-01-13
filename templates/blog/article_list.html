@@ -4,29 +4,31 @@
 {% block meta_tags %}
     {% include '_meta_tags.html' with meta_title=category.get_meta_title meta_description=category.meta_description meta_keyword=article.meta_keywords %}
 {% endblock %}
-
+{% block breadcumbs %}
+    {% include '_breadcrumbs.html' %}
+{% endblock %}
 
 {% block content %}
-    <h1>Статьи</h1>
+    <h1>{{ category.name }}</h1>
     <div class="row">
         {% for article in articles %}
             <div class="col-4 blog-item">
                 {% if article.image %}
-                    <a href="{% url 'blog_article_viwe' article_id=article.id category_id=article.category.id %}"><img class="img-thumbnail" src="{{ article.image_thumbnail.url }}" alt=""></a>
+                    <a href="{% url 'blog_article_viwe' article_id=article.id category_id=article.category.id %}">
+                        <img class="img-thumbnail" src="{{ article.image_thumbnail.url }}" alt="">
+                    </a>
                 {% else %}
-                    <a href="{% url 'blog_article_viwe' article_id=article.id category_id=article.category.id %}"><img class="img-thumbnail" src="{% static 'img/no-image.png' %}" alt=""></a>
+                    <a href="{% url 'blog_article_viwe' article_id=article.id category_id=article.category.id %}">
+                        <img class="img-thumbnail" src="{% static 'img/no-image.png' %}" alt="">
+                    </a>
                 {% endif %}
                 <h4>
                     <a href="{% url 'blog_article_viwe' article_id=article.id category_id=article.category.id %}">{{ article.title }}</a>
                 </h4>
                 <p>{{ article.text_preview }}</p>
                 <hr>
-                <p class="text-end"><i>Дата создания - {{ article.created_at }}</i></p>
-
-
+                <p class="text-end"><i>{{ article.created_at }}</i></p>
+            </div>
         {% endfor %}
     </div>
 {% endblock %}
-
-
-
