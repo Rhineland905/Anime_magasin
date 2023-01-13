@@ -41,6 +41,8 @@ class Category(MPTTModel,MetaTagMixins):
 
     image_tag.short_description = 'Изображения'
 
+
+
     def __str__(self):
         full_path = [self.name]
         parent = self.parent
@@ -124,6 +126,13 @@ class Product(MetaTagMixins):
         image = self.main_image()
         if image:
             return image.image_tag_thumbnail()
+
+    def main_category(self):
+        category = self.categories.filter(productcategory__is_main=True).first()
+        if category:
+            return category
+        else:
+            return self.categories.first()
 
     def __str__(self):
         return self.name

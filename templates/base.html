@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src = "{% static 'lightbox/js/lightbox.js' %}"></script>
+    <script src="{% static 'lightbox/js/lightbox.js' %}"></script>
 
 </head>
 <body>
@@ -53,6 +53,8 @@
 
 
 <div class="container">
+    {% block breadcrumbs %}
+    {% endblock %}
     {% block content %}
     {% endblock %}
     <div class="row header-text">
@@ -63,3 +65,4 @@
 </div>
 </body>
 </html>
+
