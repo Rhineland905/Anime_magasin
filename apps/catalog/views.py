@@ -6,6 +6,14 @@ from apps.catalog.models import Category, Product
 class CategoryIndexView(generic.ListView):
     model = Category
     template_name = 'catalog/index.html'
+    def set_breadcrumbs(self):
+        breadcrumbs = {}
+        breadcrumbs.update({'current': 'Каталог'})
+        return breadcrumbs
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['breadcrumbs'] = self.set_breadcrumbs()
+        return context
     queryset = Category.objects.filter(parent=None)
 
 
