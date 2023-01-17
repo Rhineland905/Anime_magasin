@@ -30,11 +30,10 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <div class="col-3">
+                            <div class="col-2">
                                 <img src="{% static 'img/Logo.png' %}" alt="" id="logo">
                             </div>
-                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link active" href="/">Главная</a>
                         </li>
@@ -43,6 +42,15 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url "catalog" %}">Магазин</a>
+                        </li>
+                        <li class="nav-item">
+                            {% if request.user.is_authenticated %}
+                                 <a class="nav-link" href="{% url "logout" %}">Выйти</a>
+                                <p class="nav-item">Добро пожаловать {{ request.user.username }}</p>
+                            {% else %}
+                                <a class="nav-link" href="{% url "register" %}">Зарегистрироваться</a>
+                                <a class="nav-link" href="{% url "login" %}">Войти</a>
+                            {% endif %}
                         </li>
                     </ul>
                 </div>
