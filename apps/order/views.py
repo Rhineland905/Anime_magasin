@@ -6,7 +6,7 @@ from apps.order.models import Cart
 
 
 # Create your views here.
-def gat_car_data(user):
+def get_car_data(user):
     total = 0
     cart = Cart.objects.filter(user=user).select_related('product')
     for row in cart:
@@ -15,16 +15,16 @@ def gat_car_data(user):
 
 
 @login_required
-def set_to_cart(request):
+def add_to_cart(request):
     data = request.GET.copy()
     data.update(user=request.user)
     request.GET = data
-    form = AddToCartForm()
+    form = AddToCartForm(request.GET)
     if form.is_valid():
         cd = form.cleaned_data
-        row = Cart.objects.filter(user=cd['user'],product=cd['product'])
+        row = Cart.objects.filter(user=cd['user'],product=cd['product']).first()
         if row:
-            Cart.objects.filter(id=row).update(quantity=row+cd['quantity'])
+            Cart.objects.filter(id=row.id).update(quantity=row.quantity + cd['quantity'])
         else:
             form.save()
-        return render(request,'order/added.html',{"product":cd['product'],"cart": gat_car_data[cd['user']]})
+        return render(request,'order/added.html',{"product":cd['product'],"cart": get_car_data(cd['user'])})
