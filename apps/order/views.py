@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
-from apps.order.forms import AddToCartForm
+from apps.order.forms import AddToCartForm, CreatOrderForm
 from apps.order.models import Cart
 
 
@@ -36,3 +36,30 @@ def cart_button(request):
         'current': 'Корзина'
     }
     return render(request, 'order/button.html',{"cart": get_car_data(request.user.id),"breadcrumbs":breadcrumbs})
+
+@login_required
+def create_order_view(request):
+    error = None
+    user = request.user
+    cart = get_car_data(user)
+    if not cart['cart']:
+        return redirect('index')
+    if request.method == 'POST':
+        data = request.POST.copy()
+        data.update(user=user,total=cart['total'])
+        request.POST = data
+
+        form = CreatOrderForm(request.POST)
+        if form.is_valid():
+            form.save()
+            Cart.objects.filter(user=user).delete()
+            return render(request,'order/created.html')
+        error = form.errors
+    else:
+        form = CreatOrderForm(data={
+            'first_name': user.first_name,
+            'last_name': user.last_name,
+            'email': user.email,
+            'phone': user.phone if user.phone else ''
+        })
+    return render(request,'order/create.html', {'cart':cart,'error':error,'form':form})
