@@ -72,7 +72,7 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     {% if request.user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link text-primary nav-item " href="{% url 'catalog' %}"><b>Корзина</b></a>
+                            <a class="nav-link text-primary nav-item " href="{% url 'cart_button' %}"><b>Корзина</b></a>
                         </li>
                     {% endif %}
                 </ul>
