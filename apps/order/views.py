@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 
 from apps.order.forms import AddToCartForm, CreatOrderForm
 from apps.order.models import Cart
@@ -27,7 +28,11 @@ def add_to_cart(request):
             Cart.objects.filter(id=row.id).update(quantity=row.quantity + cd['quantity'])
         else:
             form.save()
-        return render(request,'order/added.html',{"product":cd['product'],"cart": get_car_data(cd['user'])})
+        breadcrumbs = {
+            reverse('cart_button'): 'Корзина',
+            'current': 'Добавлено'
+        }
+        return render(request,'order/added.html',{"product":cd['product'],'breadcrumbs':breadcrumbs, "cart": get_car_data(cd['user'])})
 
 
 @login_required
@@ -62,4 +67,9 @@ def create_order_view(request):
             'email': user.email,
             'phone': user.phone if user.phone else ''
         })
-    return render(request,'order/create.html', {'cart':cart,'error':error,'form':form})
+    breadcrumbs = {
+        reverse('cart_button'): 'Корзина',
+        'current': 'Оформления'
+    }
+    return render(request,'order/create.html', {'cart':cart,'error':error,'form':form,'breadcrumbs':breadcrumbs})
+

@@ -1,5 +1,7 @@
 {% extends "base.html" %}
-
+{% block breadcrumbs %}
+    {% include '_breadcrumbs.html' %}
+{% endblock %}
 {% block content %}
     <h3 class="my-header">Добавлено!</h3>
     <p>Товар <a href="{% url 'product' slug=product.slug %}">{{ product.name }}</a> добавлен в корзину</p>

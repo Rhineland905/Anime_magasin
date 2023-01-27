@@ -32,7 +32,11 @@ def user_register(request):
             user.save()
             return render(request, 'user/welcome.html',{'user':user})
         error = form.errors
-    return render(request,'user/register.html',{'error':error})
+    breadcrumbs = {
+        'current': 'Регистрация'
+    }
+    return render(request,'user/register.html',{'error':error,'breadcrumbs':breadcrumbs})
+
 
 def user_logout(request):
     logout(request)
