@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'mptt',
     'treebeard',
     'mathfilters',
+    'rest_framework',
+    'rest_framework.authtoken',
 
     'apps.blog',
     'apps.user',
@@ -145,3 +147,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'user.User'
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'index'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
