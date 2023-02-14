@@ -25,3 +25,15 @@ class ProductDeleteViews(generics.DestroyAPIView):
     serializer_class = ProductWriteSerializer
     queryset = Product.objects.all()
     permissions_classes = [permissions.IsAdminUser]
+
+
+
+class CategoryViewSet(viewsets.ModelViewSet):
+    serializer_class = CategorySerializer
+    queryset = Category.objects.all()
+
+    def get_permissions(self):
+        if self.action['create','update','destroy']:
+            return [permissions() for permissions in [permissions.IsAdminUser]]
+        return [permissions() for permissions in [permissions.AllowAny]]
+
