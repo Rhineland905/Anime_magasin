@@ -13,7 +13,6 @@ class CategorySerializer(serializers.ModelSerializer):
             'slug',
             'description',
             'parent',
-            'img',
             'meta_title',
             'meta_description',
             'meta_keywords',
