@@ -13,6 +13,7 @@ class CategorySerializer(serializers.ModelSerializer):
             'slug',
             'description',
             'parent',
+            'image',
             'meta_title',
             'meta_description',
             'meta_keywords',
@@ -25,6 +26,7 @@ class ProductWriteSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'name',
+            'slug',
             'description',
             'quantity',
             'price',
@@ -39,9 +41,9 @@ class ProductReadSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'name',
+            'slug',
             'description',
             'quantity',
             'price',
             'categories'
         )
-

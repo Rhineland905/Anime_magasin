@@ -6,6 +6,7 @@ from django.urls import reverse
 from pilkit.processors import ResizeToFill
 
 from apps.main.mixins import MetaTagMixins
+from apps.user.models import User
 from config.settings import MEDIA_ROOT
 
 
@@ -108,6 +109,8 @@ class Product(MetaTagMixins):
     quantity = models.IntegerField(verbose_name='Количество')
     price = models.DecimalField(verbose_name='Цена', max_digits=12, decimal_places=2, default=0)
     categories = models.ManyToManyField(Category, verbose_name='Категории', through='ProductCategory', blank=True)
+    is_checked = models.BooleanField(verbose_name='Проверка', default=False)
+    user = models.ForeignKey(User,verbose_name='Пользователь',null=True,blank=True, on_delete=models.SET_NULL)
     updated_at = models.DateTimeField(verbose_name='Дата изменения', auto_now=True)
     created_at = models.DateTimeField(verbose_name='Дата создания', auto_now_add=True)
 
