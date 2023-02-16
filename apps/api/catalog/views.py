@@ -3,29 +3,32 @@ from apps.catalog.models import Category, Product, ProductImage
 from apps.api.catalog.serializers import CategorySerializer, ProductReadSerializer, ProductWriteSerializer
 
 
-class ProductListViews(generics.ListAPIView):
+class ProductListView(generics.ListAPIView):
     serializer_class = ProductReadSerializer
     queryset = Product.objects.all()
 
-class ProductDetailViews(generics.RetrieveAPIView):
+
+class ProductDetailView(generics.RetrieveAPIView):
     serializer_class = ProductReadSerializer
     queryset = Product.objects.all()
 
-class ProductCreatViews(generics.CreateAPIView):
+
+class ProductCreateView(generics.CreateAPIView):
     serializer_class = ProductWriteSerializer
     queryset = Product.objects.all()
-    permissions_classes = [permissions.IsAdminUser]
+    permission_classes = [permissions.IsAdminUser]
 
-class ProductUpdateViews(generics.UpdateAPIView):
+
+class ProductUpdateView(generics.UpdateAPIView):
     serializer_class = ProductWriteSerializer
     queryset = Product.objects.all()
-    permissions_classes = [permissions.IsAdminUser]
+    permission_classes = [permissions.IsAdminUser]
 
-class ProductDeleteViews(generics.DestroyAPIView):
+
+class ProductDeleteView(generics.DestroyAPIView):
     serializer_class = ProductWriteSerializer
     queryset = Product.objects.all()
-    permissions_classes = [permissions.IsAdminUser]
-
+    permission_classes = [permissions.IsAdminUser]
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
@@ -33,7 +36,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
 
     def get_permissions(self):
-        if self.action['create','update','destroy']:
-            return [permissions() for permissions in [permissions.IsAdminUser]]
-        return [permissions() for permissions in [permissions.AllowAny]]
+        if self.action in ['create', 'update', 'destroy']:
+            return [permission() for permission in [permissions.IsAdminUser]]
+        return [permission() for permission in [permissions.AllowAny]]
 
