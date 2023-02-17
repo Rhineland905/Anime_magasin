@@ -5,9 +5,15 @@ from apps.api.catalog.serializers import CategorySerializer, ProductReadSerializ
 
 class ProductListView(generics.ListAPIView):
     serializer_class = ProductReadSerializer
-    queryset = Product.objects.all()
-
-
+    # queryset = Product.objects.filter(is_checked=True)
+    def get_queryset(self):
+        queryset = Product.objects.filter(is_checked=True)
+        category = self.request.query_params.get('category')
+        if category:
+            queryset = Product.objects.filter(categories=category)
+        if category:
+            queryset = Product.objects.filter(name__icontains=category)
+        return queryset
 class ProductDetailView(generics.RetrieveAPIView):
     serializer_class = ProductReadSerializer
     queryset = Product.objects.all()
