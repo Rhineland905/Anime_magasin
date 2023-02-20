@@ -1,33 +1,29 @@
-from django.core.checks import Tags
 from rest_framework import serializers
-from apps.blog.models import Article , BlogCategory, Tag
+
+from apps.blog.models import BlogCategory, Article, Tag
 
 
-class TagsSerializer(serializers.ModelSerializer):
+class TagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tag
-        fields = (
-            'id',
-            'name',
-        )
+        fields = ('id', 'name')
 
 
 class BlogCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = BlogCategory
-        fields = (
-            'id',
-            'name',
-            'image',
-        )
+        fields = ('id', 'name', 'image')
+
 
 class ArticleWriteSerializer(serializers.ModelSerializer):
-    tags = serializers.ListSerializer(child=serializers.CharField(max_length=64), write_only=True)
+    tags = serializers.ListField(child=serializers.CharField(max_length=64), write_only=True)
+
     class Meta:
         model = Article
         fields = (
             'id',
-            'name',
+            'category',
+            'title',
             'text_preview',
             'text',
             'publish_date',
@@ -38,19 +34,19 @@ class ArticleWriteSerializer(serializers.ModelSerializer):
 
 class ArticleReadSerializer(serializers.ModelSerializer):
     category = BlogCategorySerializer()
-    tags = TagsSerializer(many=True)
+    tags = TagSerializer(many=True)
 
     class Meta:
         model = Article
         fields = (
             'id',
-            'name',
+            'category',
             'user',
+            'title',
             'text_preview',
             'text',
             'publish_date',
             'image',
-            'category',
             # 'image_thumbnail',
             'created_at',
             'tags'
