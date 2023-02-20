@@ -23,7 +23,7 @@ class ArticleWriteSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'category',
-            'title',
+            'name',
             'text_preview',
             'text',
             'publish_date',
@@ -42,7 +42,7 @@ class ArticleReadSerializer(serializers.ModelSerializer):
             'id',
             'category',
             'user',
-            'title',
+            'name',
             'text_preview',
             'text',
             'publish_date',

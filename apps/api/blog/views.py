@@ -48,3 +48,19 @@ class ArticleViewSet(viewsets.ModelViewSet):
         read_serializer = self.serializer_class(article, context={'request': request})
 
         return Response(read_serializer.data, status=status.HTTP_201_CREATED)
+
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data)
+        serializer.is_valid(raise_exception=True)
+        tags = []
+        for tag_name in serializer.validated_data.get('tags'):
+            tag = Tag.objects.filter(name=tag_name).first()
+            if not tag:
+                tag = Tag.objects.create(name=tag_name)
+            tags.append(tag)
+
+        article = serializer.save(user=self.request.user, tags=tags)
+
+        read_serializer = self.serializer_class(article, context={'request': request})
+        return  Response(read_serializer.data,status=status.HTTP_200_OK)
