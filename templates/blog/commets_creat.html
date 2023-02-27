@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block breadcrumbs %}
+    {% include '_breadcrumbs.html' %}
+{% endblock %}
+{% block meta_tags %}
+    {% include '_meta_tags.html' with meta_title='Создания коментария' %}
+{% endblock %}
+
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-12 col-md-3"></div>
+        <div class="col-sm-12 col-md-6">
+            {% if error %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endif %}
+            <form method="get">
+                {% if not request.user.is_authenticated %}
+                    <div class="mb-3">
+                    <label for="name" class="form-label">Имя</label>
+                    <input type="text" class="form-control" id="name" name="name" value="{{ form.data.name }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="e_mail" class="form-label">eE-mail</label>
+                    <input type="text" class="form-control" id="e_mail" name="e_mail" value="{{ form.data.e_mail }}" required>
+                </div>
+                {% endif %}
+                <div class="mb-3">
+                    <label for="text" class="form-label">Комментарий</label>
+                    <textarea name="text" id="text" class="form-control" rows="3">{{ form.data.text }}</textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Создать коментарий</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

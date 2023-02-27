@@ -76,3 +76,17 @@ class Article(MetaTagMixins):
     class Meta:
         verbose_name = 'Статья'
         verbose_name_plural = 'Статьи'
+
+
+
+class BlogComets(models.Model):
+    name = models.CharField(verbose_name='Имя пользователя',max_length=64)
+    e_mail = models.CharField(verbose_name='e_mail',max_length=255)
+    text = models.TextField(verbose_name='Комент')
+    article = models.ForeignKey(to=Article,verbose_name='Статья', on_delete=models.CASCADE)
+    created_at = models.DateTimeField(verbose_name='Дата создания', auto_now_add=True)
+    is_checked = models.BooleanField(verbose_name='Проверка', default=False)
+
+    class Meta:
+        verbose_name = 'Комен'
+        verbose_name_plural = 'Коментарии'

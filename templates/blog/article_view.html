@@ -8,7 +8,7 @@
 {% block meta_tags %}
     {% include '_meta_tags.html' with meta_title=article.get_meta_title meta_description=article.meta_description meta_keyword=article.meta_keywords %}
 {% endblock %}
-
+{% include 'blog/commets_creat.html'%}
 
 {% block content %}
 <h2>{{ article.name }}</h2>
@@ -29,6 +29,16 @@
         Дата: <b>{{ article.publish_date }}</b>
         Категория: <b>{{ category.name }}</b>
     </p>
+    <p class="commet">Коментари:</p>
+    <div class="commet">
+
+        {% for commet in commets %}
+            <p class="commet">{{ commet.name }} - {{ commet.text }}</p>
+            <hr>
+        {% endfor %}
+    </div>
+
+     <p class="text-center"><a href="{% url 'commets' article_id=article.id %}" class="btn-primary">Создать комент</a></p>
     {% if article.user %}
         <div class="f_l_name">
             {% if article.user.image %}
@@ -43,7 +53,6 @@
 
             {% endif %}
         </div>
-
     {% endif %}
 {% endblock %}
 

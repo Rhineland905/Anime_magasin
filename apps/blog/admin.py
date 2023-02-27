@@ -1,11 +1,15 @@
 from django.contrib import admin
 from apps.blog.models import BlogCategory
-from apps.blog.models import Article, Tag
+from apps.blog.models import Article, Tag,BlogComets
 from django.urls import reverse
 from django.utils.html import format_html
 from django.utils.http import urlencode
 
 
+@admin.register(BlogComets)
+class CometsAdmin(admin.ModelAdmin):
+    list_display = ['id','name','article']
+    list_display_links = ['id','name']
 @admin.register(Tag)
 class TagsAdmin(admin.ModelAdmin):
     list_display = ['id', 'name']
