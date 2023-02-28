@@ -1,4 +1,4 @@
-from apps.blog.views import blog_category_list, article_list, article_view, tag_search
+from apps.blog.views import blog_category_list, article_list, article_view, tag_search,commets_creat
 from django.urls import path
 
 urlpatterns = [
@@ -6,4 +6,5 @@ urlpatterns = [
     path("<int:category_id>/", article_list, name="blog_article_list"),
     path("<int:category_id>/<int:article_id>/", article_view, name="blog_article_viwe"),
     path('tag/<int:tag_id>/', tag_search, name='tag_search'),
+    path('commets/<int:article_id>/',commets_creat , name='commets'),
 ]

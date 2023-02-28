@@ -96,3 +96,10 @@
     display: block;
     margin: 0 0 15px;
 }
+
+.commet {
+  margin: 0 4px 0;
+    display: block;
+     text-align: left;
+
+}
